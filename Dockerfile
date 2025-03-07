@@ -21,3 +21,4 @@ ENV FLASK_APP=app.py
 
 # Command to run the application
 CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
+
