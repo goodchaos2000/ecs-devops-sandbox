@@ -2,28 +2,32 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "inferenceAccelerators": [],
     "containerDefinitions": [
         {
             "name": "ecs-devops-sandbox",
-            "image": "ecs-devops-sandbox-repository:00000",
-            "resourceRequirements": null,
+            "image": "241533160340.dkr.ecr.us-west-1.amazonaws.com/ecs-devops-sandbox-repository:latest",
             "essential": true,
             "portMappings": [
                 {
-                    "containerPort": "8080",
+                    "containerPort": 8080,
                     "protocol": "tcp"
                 }
-                
-            ]
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/ecs-devops-sandbox",
+                    "awslogs-region": "us-west-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
         }
     ],
     "volumes": [],
     "networkMode": "awsvpc",
     "memory": "512",
     "cpu": "256",
-    "executionRoleArn": "arn:aws:iam::<YOUR_AWS_ACCOUNT_ID>:role/ecs-devops-sandbox-execution-role",
+    "executionRoleArn": "arn:aws:iam::241533160340:role/ecsTaskExecutionRole",
     "family": "ecs-devops-sandbox-task-definition",
-    "taskRoleArn": "",
-    "placementConstraints": []
+    "taskRoleArn": "arn:aws:iam::241533160340:role/ecsTaskExecutionRole"
 }
